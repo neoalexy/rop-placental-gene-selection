@@ -34,17 +34,18 @@ raw counts -> log2(CPM + 1) -> t-test DEG filter (124 candidates) -> genetic alg
 | Method | AUC, nested CV | Genes used |
 |---|---|---|
 | Genetic algorithm (6 seeds x 5 folds) | 0.834 ± 0.191 | 4-19 |
-| Random Forest, top-124 F-test genes | 0.878 ± 0.194 | 124 |
+| Random Forest, top-124 F-test genes (6 seeds x 5 folds) | 0.843 ± 0.176 | 124 |
 | Ridge (L2) | 0.811 ± 0.171 | all candidates |
 | Elastic-net | 0.744 ± 0.191 | 43-134 |
 | LASSO (L1) | 0.656 ± 0.286 | 9-16 |
 
 ![Method comparison](results/figures/method_comparison.png)
 
-- The GA reaches about the same AUC as a Random Forest on all candidates, with roughly ten times fewer genes,
-  and beats elastic-net, the method used by Huang et al.
+- The GA matches a Random Forest on 124 genes (0.834 vs 0.843, well inside the fold-to-fold spread) while using about
+  8 genes on average, and beats elastic-net (0.744), the method used by Huang et al.
 - With 6 test samples per fold, single runs are noisy. Across GA seeds the mean AUC ranges from 0.725 to 0.903, and fold 1 alone
-  ranges from 0.125 to 0.875. The thesis reports one unseeded run (0.919 ± 0.068); this repository repeats the procedure with fixed seeds.
+  ranges from 0.125 to 0.875. The thesis reports one unseeded GA run (0.919 ± 0.068) against one RF run (0.878); this repository
+  repeats both with six fixed seeds, which brings them level.
 - Permutation test on the final gene set (500 shuffles of the labels): null AUC 0.48 ± 0.16. Compared with the nested estimate of 0.834, p = 0.012.
 
 ### Stable genes
@@ -96,5 +97,3 @@ samples only, and that the GA reports the gene names of the columns it actually 
 - Bestetti S. et al. (2020). Human aquaporin-11 guarantees efficient transport of H2O2 across the ER membrane. *Redox Biology*, 28.
 
 Full reference list in the thesis. Code is MIT-licensed.
-
-Aleksandra Crnatović · [github.com/neoalexy](https://github.com/neoalexy)

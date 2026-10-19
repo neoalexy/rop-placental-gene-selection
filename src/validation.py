@@ -78,9 +78,9 @@ def nested_baselines(expr, y):
     return out
 
 
-def rf_baseline(expr, y, k=124):
+def rf_baseline(expr, y, k=124, seed=42):
     """Random Forest on the top-k genes by F-test, with selection refit inside each fold."""
-    model = make_pipeline(SelectKBest(f_classif, k=k), RandomForestClassifier(n_estimators=200, random_state=42))
+    model = make_pipeline(SelectKBest(f_classif, k=k), RandomForestClassifier(n_estimators=200, random_state=seed))
     return cross_val_score(model, expr, y, cv=OUTER, scoring="roc_auc").tolist()
 
 

@@ -97,3 +97,5 @@ samples only, and that the GA reports the gene names of the columns it actually 
 - Bestetti S. et al. (2020). Human aquaporin-11 guarantees efficient transport of H2O2 across the ER membrane. *Redox Biology*, 28.
 
 Full reference list in the thesis. Code is MIT-licensed.
+
+Aleksandra Crnatović · [github.com/neoalexy](https://github.com/neoalexy)
